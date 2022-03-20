@@ -1,0 +1,19 @@
+.OffCnavas{
+    background-color:#115098c9 ;
+    color: white;
+}
+.OffCnavas a{
+    color: white;
+}
+.SideNavMenu{
+        background-color: transparent;
+
+
+}
+
+@media only screen and (max-width: 500px) {
+  .OffCnavas{
+      width: 55%;
+  }
+  
+}

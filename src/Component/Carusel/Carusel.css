@@ -1,0 +1,25 @@
+.Carusel {
+  width: 95vw;
+height: 600px;
+  margin: 20px auto;
+  box-shadow: 5px 5px 10px 1px black;
+  border-radius: 10px;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.Carusel:hover {
+  box-shadow: 2px 5px 10px rgba(111, 175, 228, 0.514);
+  transform: scale(1.005);
+}
+@media only screen and (max-width: 920px) {
+  .Carusel {
+    width: 95%;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+  .Carusel {
+    width: 95%;
+  }
+}
