@@ -2,4 +2,10 @@
   width: 100%;
   overflow-x: hidden;
   font-family: 'Andada Pro', serif;
+  background-image: url("./Background.jpg");
+  background-position: center;
+  background-size: cover;
+   background-repeat: repeat-y;
+   background-attachment: fixed;
+
 }

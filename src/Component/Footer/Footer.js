@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="Footer">
+    <div className="Footer mt-4">
       <div className="emergency" xs={12}>
         <h4>For Emergencies Please Call Us At (850-753-106)</h4>
       </div>
@@ -67,12 +67,15 @@ const Footer = () => {
 
         <Col xs={12} sm={12} md={6} lg={3}>
           <h3>Subscribe More Info</h3>
-          {/* <Form.Control
-                type="email"
-                className="w-75 mx-auto mx-md-0 fs-5 mt-4"
-                placeholder="Email"
-              /> */}
-          <Button className="bg-warning mb-3 fw-bold fs-5 py-1 px-3 rounded-3 mt-3">
+          <div className=" Subscription">
+            
+            <input
+              
+              type="text"
+              placeholder=" Enter Your Email*"
+            />
+          </div>
+          <Button className="bg-warning mb-3 fw-bold fs-5 subsctibeBTn py-1 px-3 rounded-3 mt-3">
             Subscribe
           </Button>
           <div className="socialLink">

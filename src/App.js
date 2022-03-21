@@ -8,18 +8,33 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from './Home/Home';
+import Login from './Component/LoginAndSingup/Login';
+import SignUp from './Component/LoginAndSingup/SignUp';
+import Footer from './Component/Footer/Footer';
+import Home from './Component/Home/Home';
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-       
+        {/* <Navigation /> */}
+
         <Switch>
-          <Route path="/" >
+          <Route exact path="/" >
             <Home/>          </Route>
         </Switch>
+        <Switch>
+          <Route path="/login">
+            <Login />{" "}
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/signup">
+            <SignUp />{" "}
+          </Route>
+        </Switch>
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

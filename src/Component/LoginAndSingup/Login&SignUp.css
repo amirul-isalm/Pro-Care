@@ -1,0 +1,164 @@
+.LoginBlock {
+  background-image: linear-gradient(to right, #115098ad, rgba(238, 130, 238, 0.685));
+  width: 40%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px;
+  padding-bottom: 50px;
+  border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px inset white;
+
+}
+.loginBlockLogo {
+  display: flex;
+  justify-content: center;
+}
+.loginBlockLogo > img {
+  width: 150px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.button {
+  padding: 7px 40px;
+  border-radius: 10px;
+  background-color: transparent;
+
+  border: none;
+  margin: 8px;
+  border: 2px solid black;
+  font-weight: 700;
+  color: #faa41a;
+  transition: all 0.6s;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #7db0df;
+  color: black;
+  transform: scale(1.1);
+}
+
+.OtherLoginLinkParent {
+  display: flex;
+  justify-content: space-around;
+  width: 65%;
+  margin: auto;
+  margin-top: 10px;
+}
+.OtherLoginLink {
+  background-color: white;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.466);
+}
+
+.OtherLoginLinkParent a {
+  color: var(--Logo-yellow);
+}
+
+.InputFildDiv {
+  width: 75%;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px inset black;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  overflow: inherit;
+}
+.Subscription {
+  width: 75%;
+
+  border-radius: 10px;
+
+  background-color: white;
+  padding: 7px;
+}
+.InputFildDiv input {
+  width: 90%;
+  background-color: transparent;
+  outline: none;
+  font-size: 17px;
+  color: var(--title-text);
+  padding: 10px;
+
+  border: none;
+}
+.Subscription input {
+  width: 90%;
+  background-color: white;
+  outline: none;
+  font-size: 17px;
+  border-radius: 10px;
+
+  border: none;
+}
+
+.errorMessaage {
+  margin: 0px auto;
+  color: red;
+  /* text-align: center; */
+  font-size: 16px;
+  width: 75%;
+}
+.errorMessaage small {
+  margin: 0px;
+}
+
+::placeholder {
+  color: var(--placeholder-color);
+}
+.inputIcon {
+  font-size: 20px;
+  margin: auto 5px;
+  padding: auto;
+  color: white;
+}
+.ShowPassword {
+  transition: all 0.5s;
+}
+.ShowPassword:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.ForgatePassword {
+  color: var(--Logo-yellow);
+  cursor: pointer;
+}
+.DontHaveAcc {
+  text-align: center;
+}
+
+.DontHaveAcc a {
+  color: var(--Logo-yellow);
+}
+
+/* verify page css */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@media only screen and (max-width: 500px) {
+  .LoginBlock {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+  .LoginBlock {
+    width: 80%;
+  }
+}
