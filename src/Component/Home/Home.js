@@ -1,4 +1,6 @@
 import React from 'react';
+import AboutUs from '../AboutUs/AboutUs';
+import AllTest from '../AllTest/AllTest';
 import Carusel from '../Carusel/Carusel';
 import Doctors from '../Doctors/Doctors';
 import Footer from '../Footer/Footer';
@@ -9,7 +11,9 @@ const Home = () => {
       <div>
             <Navigation />
         <Carusel />
-        <Doctors/>
+        <AboutUs/>
+        <Doctors />
+        <AllTest/>
         <Footer/>
       </div>
     );

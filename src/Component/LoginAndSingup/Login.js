@@ -8,13 +8,18 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Button, FormLabel } from "react-bootstrap";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import useAuth from "../Context/useAuth";
+
 import swal from "sweetalert";
+import Navigation from "../NavigationBar/Navigation";
+import Footer from "../Footer/Footer";
 
 const Login = () => {
   const history = useHistory();
+    const location = useLocation();
+    const { loginUsingEmailPass, error, loginSuccess, loginWithGoogle } =useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [myLoginData, setLogInData] = useState({});
   const [user, setUser] = useState({});
@@ -22,6 +27,13 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [EmailerrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage8, setPasswordErrorMessage8] = useState("");
+  const [loading, setLoading] = useState(false);
+
+ function handleClick() {
+   setLoading(true);
+   loginWithGoogle(history, location);
+ }
+  
 
   let passwordFildType;
 
@@ -58,47 +70,50 @@ const Login = () => {
       setPasswordErrorMessage8("");
     }
 
-    
+        loginUsingEmailPass(
+          myLoginData.email,
+          myLoginData.password,
+          history,
+          location
+        );
+
   };
 
   return (
-    <div className="LoginBlock">
+    <><Navigation /><div className="LoginBlock">
       <div className="loginBlockLogo">
         <img
           src="https://i.ibb.co/WDV1Qww/procare-LOgo-removebg-preview-removebg-preview-removebg-preview.png"
-          alt=""
-        />
+          alt="" />
       </div>
       <form onSubmit={handelSubmit}>
         <div className="InputFildDiv ">
           {" "}
-          <label>
+          <FormLabel>
             {" "}
             <FontAwesomeIcon className="inputIcon" icon={faEnvelope} />{" "}
-          </label>
+          </FormLabel>
           <input
             onBlur={handelBlure}
             type="email"
             name="email"
-            placeholder=" Enter your Email*"
-          />
+            placeholder=" Enter your Email*" />
         </div>
         <div className="errorMessaage ">
           <small>{EmailerrorMessage}</small>
         </div>
         <div className="InputFildDiv ">
           {" "}
-          <label>
+          <FormLabel>
             {" "}
             <FontAwesomeIcon className="inputIcon" icon={faKey} />{" "}
-          </label>
+          </FormLabel>
           <input
             onBlur={handelBlure}
             name="password"
             type={passwordFildType}
-            placeholder="Enter Your Password*"
-          />
-          <level>
+            placeholder="Enter Your Password*" />
+          <FormLabel>
             <span
               onClick={() => setShowPassword(!showPassword)}
               as={Button}
@@ -110,7 +125,7 @@ const Login = () => {
                 <FontAwesomeIcon icon={faEye} />
               )}
             </span>
-          </level>
+          </FormLabel>
         </div>
         <div className="errorMessaage ">
           <small>{passwordErrorMessage8}</small>
@@ -132,7 +147,7 @@ const Login = () => {
       </form>
       <div>
         <span className="OtherLoginLinkParent my-3 d-flex">
-          <a href="https://www.facebook.com/uviominc/">
+          <a href="#">
             <span className="OtherLoginLink">
               {" "}
               <FontAwesomeIcon icon={faFacebookF} />
@@ -144,7 +159,7 @@ const Login = () => {
               <FontAwesomeIcon icon={faInstagram} />
             </span>
           </a>
-          <a href="#">
+          <a onClick={handleClick} href="#">
             <span className="OtherLoginLink">
               {" "}
               <FontAwesomeIcon icon={faGoogle} />
@@ -159,9 +174,9 @@ const Login = () => {
         </span>
       </div>
       <p className="DontHaveAcc mt-4">
-        Dont have account? <Link to="/signup">Sign Up</Link>
+        Dont have account?<Link to="/signup">Sign Up</Link>
       </p>
-    </div>
+    </div><Footer /></>
   );
 };
 

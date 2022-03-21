@@ -1,16 +1,19 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faEnvelope, faKey, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import swal from "sweetalert";
+import React, { useState } from "react";
+import { Button, Col, Form, FormLabel, Row } from "react-bootstrap";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import useAuth from "../Context/useAuth";
 import Spinner from "react-bootstrap/Spinner";
-import './Login&SignUp.css'
+import "./Login&SignUp.css";
+import Footer from "../Footer/Footer";
+import Navigation from "../NavigationBar/Navigation";
 
 const SignUp = () => {
   const history = useHistory();
+  const location = useLocation();
+
   const [showPassword, setShowPassword] = useState(false);
   const [signInData, setSignInData] = useState({});
   const [clickSignup, setClickSingup] = useState(false);
@@ -18,9 +21,11 @@ const SignUp = () => {
   const [lastNameErrorMessage, setLastNameErrorMessage] = useState("");
   const [EmailerrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage8, setPasswordErrorMessage8] = useState("");
-  const [passwordErrorMessageinvalid, setpasswordErrorMessageinvalid] =useState("");
+  const [passwordErrorMessageinvalid, setpasswordErrorMessageinvalid] =
+    useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const { createAccountUsingEmailPass, error, loginSuccess, setError } =
+    useAuth();
   let passwordFildType;
   if (showPassword) {
     passwordFildType = "text";
@@ -35,21 +40,14 @@ const SignUp = () => {
     newData[name] = value;
     setSignInData(newData);
   };
-  
 
   const handelSubmit = (e) => {
     e.preventDefault();
 
-
-    if (!signInData.first_name || signInData.first_name.length < 1) {
+    if (!signInData.displayName || signInData.displayName.length < 1) {
       setfirstNameErrorMessage("The first name must be at least 1 characters.");
     } else {
       setfirstNameErrorMessage("");
-    }
-    if (!signInData.last_name || signInData.last_name.length < 1) {
-      setLastNameErrorMessage("The last name must be at least 1 characters.");
-    } else {
-      setLastNameErrorMessage("");
     }
 
     if (
@@ -74,12 +72,10 @@ const SignUp = () => {
     }
 
     // if any error the   function not move on
-    if (!signInData.first_name || signInData.first_name.length < 1) {
+    if (!signInData.displayName || signInData.displayName.length < 1) {
       return;
     }
-    if (!signInData.last_name || signInData.last_name.length < 1) {
-      return;
-    }
+
     if (!signInData.email || signInData.email.length < 3) {
       return;
     }
@@ -92,71 +88,55 @@ const SignUp = () => {
     }
 
     if (signInData.password !== signInData.repassword) {
-      return
+      return;
     }
+    setClickSingup(true);
 
- 
-
-    
+    createAccountUsingEmailPass(
+      signInData.email,
+      signInData.password,
+      signInData.displayName,
+      history,
+      location
+    );
   };
 
- 
-
   return (
-    <div className="LoginBlock">
+    <><Navigation /><div className="LoginBlock">
       <div className="loginBlockLogo">
         <img
           src="https://i.ibb.co/WDV1Qww/procare-LOgo-removebg-preview-removebg-preview-removebg-preview.png"
-          alt=""
-        />
+          alt="" />
       </div>
       <form onSubmit={handelSubmit}>
         <Row>
           <Col className=" pading0Md" xs={12}>
             {" "}
             <div className="InputFildDiv ">
-              <label>
+              <FormLabel>
                 <FontAwesomeIcon className="inputIcon" icon={faUser} />
-              </label>
+              </FormLabel>
               <input
                 onChange={handelBlure}
-                name="first_name"
+                name="displayName"
                 type="text"
-                placeholder=" Enter First Name*"
-              />
+                placeholder=" Enter Your Full Name*" />
             </div>
             <div className="errorMessaage ">
               <small>{firstNameErrorMessage}</small>
             </div>
           </Col>
           <Col className=" pading0Md" xs={12}>
-            <div className="InputFildDiv ">
-              <label>
-                <FontAwesomeIcon className="inputIcon" icon={faUser} />
-              </label>
-              <input
-                onChange={handelBlure}
-                name="last_name"
-                type="text"
-                placeholder=" Enter Last Name*"
-              />
-            </div>
-            <div className="errorMessaage ">
-              <small>{lastNameErrorMessage}</small>
-            </div>
-          </Col>
-          <Col className=" pading0Md" xs={12}>
             <div className="InputFildDiv my-3 ">
-              <label>
+              <FormLabel>
                 {" "}
                 <FontAwesomeIcon className="inputIcon" icon={faEnvelope} />{" "}
-              </label>
+              </FormLabel>
               <input
                 onChange={handelBlure}
                 name="email"
                 type="email"
-                placeholder=" Enter Valid Email*"
-              />
+                placeholder=" Enter Valid Email*" />
             </div>
             <div className="errorMessaage ">
               <small>{EmailerrorMessage}</small>
@@ -165,17 +145,16 @@ const SignUp = () => {
           <Col className=" pading0Md" xs={12}>
             {/* password */}
             <div className="InputFildDiv ">
-              <level>
+              <FormLabel>
                 {" "}
                 <FontAwesomeIcon className="inputIcon" icon={faKey} />{" "}
-              </level>
+              </FormLabel>
               <input
                 onChange={handelBlure}
                 name="password"
                 type={passwordFildType}
-                placeholder="Enter Password*"
-              />
-              <level>
+                placeholder="Enter Password*" />
+              <FormLabel>
                 <span
                   onClick={() => setShowPassword(!showPassword)}
                   as={Button}
@@ -187,7 +166,7 @@ const SignUp = () => {
                     <FontAwesomeIcon icon={faEye} />
                   )}
                 </span>
-              </level>
+              </FormLabel>
             </div>
             <div className="errorMessaage ">
               <small>{passwordErrorMessage8}</small>
@@ -196,17 +175,16 @@ const SignUp = () => {
           {/* re type password */}{" "}
           <Col className=" pading0Md" xs={12}>
             <div className="InputFildDiv ">
-              <level>
+              <FormLabel>
                 {" "}
                 <FontAwesomeIcon className="inputIcon" icon={faKey} />{" "}
-              </level>
+              </FormLabel>
               <input
                 onChange={handelBlure}
                 name="repassword"
                 type={passwordFildType}
-                placeholder="Re-Type Password*"
-              />
-              <level>
+                placeholder="Re-Type Password*" />
+              <FormLabel>
                 <span
                   onClick={() => setShowPassword(!showPassword)}
                   as={Button}
@@ -218,7 +196,7 @@ const SignUp = () => {
                     <FontAwesomeIcon icon={faEye} />
                   )}
                 </span>
-              </level>
+              </FormLabel>
             </div>
             {/* error show */}
             <div className="errorMessaage ">
@@ -255,8 +233,7 @@ const SignUp = () => {
                 animation="border"
                 size="sm"
                 role="status"
-                aria-hidden="true"
-              />
+                aria-hidden="true" />
             </button>
           ) : (
             <button type="submit" className="button ">
@@ -266,13 +243,11 @@ const SignUp = () => {
           )}
         </div>
         <p className="DontHaveAcc mb-3">
-          Already have account? <Link to="/login">Log In</Link>
+          Already have account?<Link to="/login">Log In</Link>
         </p>
       </form>
-    </div>
+    </div><Footer /></>
   );
 };
-
-
 
 export default SignUp;

@@ -1,0 +1,31 @@
+
+.DashbordOffCnavas{
+    /* background-color:#3a1198ee ; */
+    color: white;
+    margin-top: 76px;
+}
+.DashbordOffCnavas a{
+    color: white;
+}
+.display100vh{
+    height: 100vh;
+}
+
+.display100vh a{
+display: block; 
+font-size: 18px;   
+margin-top: 15px;
+font-weight: 600;
+}
+.sidebar a{
+display: block; 
+font-size: 18px;   
+margin-top: 15px;
+font-weight: 600;
+color: black;
+}
+@media only screen and (max-width: 500px) {
+  .DashbordOffCnavas{
+      width: 55%;
+  }
+}

@@ -1,4 +1,35 @@
-.section{
-    width: 90%;
-    margin: auto;
+.section {
+  width: 90%;
+  margin: auto;
+}
+.appoinmentInput {
+  width: 100%;
+  margin: 5px auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px inset black;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  overflow: inherit;
+}
+
+.appoinmentInput input {
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  font-size: 17px;
+
+  padding: 10px;
+
+  border: none;
+}
+.appoinmentInput textarea {
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  font-size: 15px;
+
+
+
+  border: none;
 }
