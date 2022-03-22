@@ -9,7 +9,7 @@ const PrivetRoute = ({ children, ...rest }) => {
   if (isLoading) {
     return (
       <div className="d-flex mt-5 justify-content-center">
-        <Spinner animation="border" />;
+        <Spinner animation="border" />
       </div>
     );
   }

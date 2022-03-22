@@ -8,7 +8,7 @@
     color: white;
 }
 .display100vh{
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .display100vh a{

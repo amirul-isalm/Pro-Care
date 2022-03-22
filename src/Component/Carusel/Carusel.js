@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Carusel.css";
 
 const Carusel = () => {
@@ -30,8 +31,18 @@ const Carusel = () => {
         <div className="text-center">
           <h1 className="mx-auto ">The Best Hospital</h1>
           <h1 className="mx-auto ">and Doctors </h1>
-          <Button variant="outline-success" size="lg">Find Doctor</Button>{" "}
-          <Button variant="primary" size="lg">Medical Tests</Button>{" "}
+          <Link to="/all-doctor">
+            <Button variant="outline-success" size="lg">
+              {" "}
+              Find Doctor{" "}
+            </Button>{" "}
+          </Link>
+          <Link to="/all-serviece">
+            {" "}
+            <Button variant="primary" size="lg">
+              Medical Tests
+            </Button>{" "}
+          </Link>
         </div>
       </div>
     </div>

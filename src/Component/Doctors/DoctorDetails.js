@@ -237,7 +237,7 @@ const DoctorDetails = () => {
                     required
                     onChange={handelfeedBack}
                     type="email"
-                    name="feedbackEmail"
+                    name="feedback"
                     value={user?.email || ""}
                   />
                 </div>

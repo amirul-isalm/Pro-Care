@@ -22,7 +22,6 @@ const Dashbord = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const { user, admin } = useAuth();
-  console.log(admin);
 
   const handelShow = () => setShow(true);
   const history = useHistory();

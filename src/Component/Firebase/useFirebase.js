@@ -35,7 +35,7 @@ const useFirebase = () => {
         updataAndSaveUser(email, name, "POST");
         history.push("/");
         updateInformation(name);
-        console.log(result.user);
+       
         setError("");
         isLoading(false);
       })
@@ -98,7 +98,7 @@ const useFirebase = () => {
         const destination = location?.state?.from || "/";
         history.push(destination);
         setError("");
-        console.log(result.user);
+        
       })
       .catch((error) => {
         setError(error.message);
@@ -127,7 +127,7 @@ const useFirebase = () => {
 
   const updataAndSaveUser = (email, displayName, mathod) => {
     const user = { email: email, displayName: displayName };
-    console.log(user);
+ 
     fetch("https://aqueous-mountain-45060.herokuapp.com/users", {
       method: mathod,
       headers: {

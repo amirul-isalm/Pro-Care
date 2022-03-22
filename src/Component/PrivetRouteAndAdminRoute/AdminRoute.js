@@ -15,7 +15,7 @@ const AdminRoute = ({ children, ...rest }) => {
   }
   if (!admin) {
 
-   return <Spinner animation="border" />;
+   return <Spinner animation="border" />
     
   }
   return (
